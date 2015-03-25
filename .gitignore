@@ -1,0 +1,6 @@
+# Ignore the Build directory
+build/
+
+# Ignore mex files and artifacts of mexbuilds
+*.mex*
+*.o

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<block>
+  <name>FEC Decoder (Async)</name>
+  <key>generic_decoder_async</key>
+  <category>FECAPI</category>
+  <import>import fec</import>
+  <make>fec.decoder_async($decoder, gr.sizeof_float, 1)</make>
+
+  <param>
+    <name>Constituent Decoder</name>
+    <key>decoder</key>
+    <value>decoder_variable</value>
+    <type>raw</type>
+  </param>
+  
+  <sink>
+    <name>fpdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+    
+  <source>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  
+  <doc>
+    This is a GnuRadio adapter for any FEC decoder following the generic_decoder API in the fec module.  Input and output are flexible to accomodate encoders that, say, modulate their encoded results into complex or float types.  
+  </doc>
+
+</block>

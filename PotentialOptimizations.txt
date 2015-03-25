@@ -1,0 +1,6 @@
+** Potential optimizations in TPC Decoder **
+
+- strided memcpy in volk?
+- gamma function call?
+- normalization of extrinsic info?  (subtract scalar from vector)
+- 

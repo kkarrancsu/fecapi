@@ -1,0 +1,4 @@
+[cfg]
+USER = tferrett
+REMOTE_CMLROOT = /home/pcs/projects/cml
+REMOTE_PROJROOT = /home/tferrett/Projects/cml

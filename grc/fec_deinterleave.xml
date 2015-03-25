@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+###################################################
+##Interleave
+###################################################
+ -->
+<block>
+	<name>Block Deinterleave</name>
+	<key>fec_deinterleave</key>
+	<category>FECAPI</category>
+	<import>import fec</import>
+	<make>fec.deinterleave($type.size, $blocksize)</make>
+	<param>
+		<name>IO Type</name>
+		<key>type</key>
+		<type>enum</type>
+		<option>
+			<name>Complex</name>
+			<key>complex</key>
+			<opt>size:gr.sizeof_gr_complex</opt>
+		</option>
+		<option>
+			<name>Float</name>
+			<key>float</key>
+			<opt>size:gr.sizeof_float</opt>
+		</option>
+		<option>
+			<name>Int</name>
+			<key>int</key>
+			<opt>size:gr.sizeof_int</opt>
+		</option>
+		<option>
+			<name>Short</name>
+			<key>short</key>
+			<opt>size:gr.sizeof_short</opt>
+		</option>
+		<option>
+			<name>Byte</name>
+			<key>byte</key>
+			<opt>size:gr.sizeof_char</opt>
+		</option>
+	</param>
+	<param>
+		<name>Num Streams</name>
+		<key>num_streams</key>
+		<value>2</value>
+		<type>int</type>
+	</param>
+	<param>
+		<name>Blocksize</name>
+		<key>blocksize</key>
+		<value>1</value>
+		<type>int</type>
+	</param>
+	<check>$num_streams &gt; 0</check>
+	<sink>
+		<name>in</name>
+		<type>$type</type>
+	</sink>
+	<source>
+		<name>out</name>
+		<type>$type</type>
+		<nports>$num_streams</nports>
+	</source>
+</block>

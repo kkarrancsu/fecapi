@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='ASCII'?>
+<block>
+  <name>Bercurve Generator</name>
+  <key>bercurve</key>
+  <category>FECAPI</category>
+  <import>from fec.bercurve_generate import bercurve_generator</import>
+  <import>import numpy</import>
+  <make>bercurve_generator(
+	esno=$esno,
+	samp_rate=$samp_rate,
+	encoder_list=$encoder_list,
+	decoder_list=$decoder_list,
+	berminerrors=$berminerrors,
+	berlimit=$berlimit,
+	threading=$threadtype.arg,
+	puncpat=$puncpat
+)</make>
+  <callback>set_esno($esno)</callback>
+  <callback>set_samp_rate($samp_rate)</callback>
+  <callback>set_encoder_list($encoder_list)</callback>
+  <callback>set_decoder_list($decoder_list)</callback>
+  <callback>set_puncpat($puncpat)</callback>
+  <param>
+    <name>esno</name>
+    <key>esno</key>
+    <value>numpy.arange(0.0, 3.0, .25)</value>
+    <type>raw</type>
+  </param>
+  <param>
+    <name>samp_rate</name>
+    <key>samp_rate</key>
+    <value>32000</value>
+    <type>raw</type>
+  </param>
+  <param>
+    <name>encoder_list</name>
+    <key>encoder_list</key>
+    <value>0</value>
+    <type>raw</type>
+  </param>
+  <param>
+    <name>decoder_list</name>
+    <key>decoder_list</key>
+    <value>0</value>
+    <type>raw</type>
+  </param>
+  <param>
+    <name>Threading Type</name>
+    <key>threadtype</key>
+    <type>enum</type>
+    <option>
+      <name>Capillary</name>
+      <key>capillary</key>
+      <opt>arg:'capillary'</opt>
+    </option>
+    <option>
+      <name>Ordinary</name>
+      <key>ordinary</key>
+      <opt>arg:'ordinary'</opt>
+    </option>
+  </param>
+  <param>
+    <name>BERMINERRORS</name>
+    <key>berminerrors</key>
+    <value>100</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>BERLIMIT</name>
+    <key>berlimit</key>
+    <value>-7.0</value>
+    <type>real</type>
+  </param>
+  <param>
+    <name>puncpat</name>
+    <key>puncpat</key>
+    <value>'11'</value>
+    <type>string</type>
+  </param>
+  <source>
+    <name>out</name>
+    <type>float</type>
+    <vlen>1</vlen>
+  </source>
+  <doc>
+
+/home/namccart/.grc_gnuradio/bercurve.py</doc>
+</block>

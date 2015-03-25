@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!--
+###################################################
+##Curve Sink
+###################################################
+ -->
+<block>
+	<name>WX GUI Curve Sink</name>
+	<key>wxgui_curvesink</key>
+	<category>WX GUI Widgets</category>
+	<import>from gnuradio.fft import window</import>
+	<import>from fec import curvesink</import>
+	<import>import numpy</import>
+	<make>#set $parent = $notebook() and 'self.%s.GetPage(%s)'%$notebook() or 'self'
+curvesink.$(type.fcn)(
+	$(parent).GetWin(),
+	y_per_div=$y_per_div,
+	y_divs=$y_divs,
+	ref_level=$ref_level,
+	title=$title,
+	x_vals=$x_vals,
+	x_units=$x_units,
+	y_units=$y_units,
+	ninputs=$num_streams,
+	legends=$legends,
+#if $win_size()
+	size=$win_size,
+#end if
+)
+#if not $grid_pos()
+$(parent).Add(self.$(id).win)
+#else
+$(parent).GridAdd(self.$(id).win, $(', '.join(map(str, $grid_pos()))))
+#end if</make>
+	<param>
+		<name>Type</name>
+		<key>type</key>
+		<value>float</value>
+		<type>enum</type>
+		<option>
+			<name>Float</name>
+			<key>float</key>
+			<opt>fcn:curve_sink_f</opt>
+		</option>
+	</param>
+	<param>
+		<name>Num Streams</name>
+		<key>num_streams</key>
+		<value>1</value>
+		<type>int</type>
+	</param>
+	<param>
+		<name>Title</name>
+		<key>title</key>
+		<value>Curve Plot</value>
+		<type>string</type>
+	</param>
+	<param>
+		<name>X Units</name>
+		<key>x_units</key>
+		<value></value>
+		<type>string</type>
+	</param>
+	<param>
+		<name>Y Units</name>
+		<key>y_units</key>
+		<value></value>
+		<type>string</type>
+	</param>
+	<param>
+		<name>X Axis</name>
+		<key>x_vals</key>
+		<value></value>
+		<type>raw</type>
+	</param>
+	<param>
+		<name>Y per Div</name>
+		<key>y_per_div</key>
+		<value>1</value>
+		<type>enum</type>
+		<option>
+			<name>1 Y unit</name>
+			<key>1</key>
+		</option>
+		<option>
+			<name>2 Y units</name>
+			<key>2</key>
+		</option>
+		<option>
+			<name>5 Y units</name>
+			<key>5</key>
+		</option>
+		<option>
+			<name>10 Y units</name>
+			<key>10</key>
+		</option>
+		<option>
+			<name>20 Y units</name>
+			<key>20</key>
+		</option>
+	</param>
+	<param>
+		<name>Y Divs</name>
+		<key>y_divs</key>
+		<value>10</value>
+		<type>int</type>
+	</param>
+	<param>
+		<name>Ref Level (Y units)</name>
+		<key>ref_level</key>
+		<value>0</value>
+		<type>real</type>
+	</param>
+	<param>
+		<name>Legend Names</name>
+		<key>legends</key>
+		<value>map(str, range(1))</value>
+		<type>raw</type>
+	</param>
+	<param>
+		<name>Refresh Rate</name>
+		<key>fft_rate</key>
+		<value>15</value>
+		<type>int</type>
+	</param>
+	
+	<param>
+		<name>Window Size</name>
+		<key>win_size</key>
+		<value></value>
+		<type>int_vector</type>
+		<hide>#if $win_size() then 'none' else 'part'#</hide>
+	</param>
+	<param>
+		<name>Grid Position</name>
+		<key>grid_pos</key>
+		<value></value>
+		<type>grid_pos</type>
+	</param>
+	<param>
+		<name>Notebook</name>
+		<key>notebook</key>
+		<value></value>
+		<type>notebook</type>
+	</param>
+	<check>len($legends) == $num_streams</check>
+	<check>not $win_size or len($win_size) == 2</check>
+	<sink>
+		<name>in</name>
+		<type>$type</type>
+		<nports>$num_streams</nports>
+	</sink>
+	<doc>
+
+	</doc>
+</block>

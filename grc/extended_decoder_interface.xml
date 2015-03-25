@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<block>
+  <name>Standard Decoder Interface</name>
+  <key>variable_decoder_interface</key>
+  <category>FECAPI</category>
+  <import>import fec</import>
+  <import>from fec.extended_decoder_interface import extended_decoder_interface</import>
+  <make>self.$(id) = $(id) = extended_decoder_interface(decoder_obj_list=$decoder_list, threading=$threadtype.arg, ann=$ann, puncpat=$puncpat, integration_period=10000)</make>
+
+
+  <param>
+    <name>fake val</name>
+    <key>value</key>
+    <value>statdard_decoder_interface</value>
+    <type>string</type>
+    <hide>all</hide>
+  </param>
+
+  <param>
+    <name>Decoder Objects</name>
+    <key>decoder_list</key>
+    <value>decoder_variable</value>
+    <type>raw</type>
+  </param>
+
+  <param>
+    <name>Threading Type</name>
+    <key>threadtype</key>
+    <type>enum</type>
+    <option>
+      <name>Capillary</name>
+      <key>capillary</key>
+      <opt>arg:'capillary'</opt>
+    </option>
+    <option>
+      <name>Ordinary</name>
+      <key>ordinary</key>
+      <opt>arg:'ordinary'</opt>
+    </option>
+    <option>
+      <name>None</name>
+      <key>none</key>
+      <opt>arg: None</opt>
+    </option>
+  </param>
+
+  <param>
+    <name>Annihilator</name>
+    <key>ann</key>
+    <value>None</value>
+    <type>raw</type>
+  </param>
+
+  <param>
+    <name>Puncture Pattern</name>
+    <key>puncpat</key>
+    <value>'11'</value>
+    <type>string</type>
+  </param>
+
+
+  <sink>
+    <name>in</name>
+    <type>float</type>
+  </sink>
+    
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+  
+  <doc>
+     
+  </doc>
+
+</block>

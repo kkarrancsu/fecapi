@@ -1,0 +1,30 @@
+INCLUDE(FindPkgConfig)
+PKG_CHECK_MODULES(PC_GNURADIO_LDPC gnuradio-ldpc)
+
+FIND_PATH(
+    GNURADIO_LDPC_INCLUDE_DIRS
+    NAMES ldpc/api.h
+    HINTS $ENV{GNURADIO_LDPC_DIR}/include
+        ${PC_GNURADIO_LDPC_INCLUDEDIR}
+    PATHS ${CMAKE_INSTALL_PREEFIX}/include
+          /usr/local/include
+          /usr/include
+)
+
+FIND_LIBRARY(
+    GNURADIO_LDPC_LIBRARIES
+    NAMES gnuradio-ldpc
+    HINTS $ENV{GNURADIO_LDPC_DIR}/lib
+        ${PC_GNURADIO_LDPC_LIBDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/lib
+          ${CMAKE_INSTALL_PREFIX}/lib64
+          /usr/local/lib
+          /usr/local/lib64
+          /usr/lib
+          /usr/lib64
+)
+
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(GNURADIO_LDPC DEFAULT_MSG GNURADIO_LDPC_LIBRARIES GNURADIO_LDPC_INCLUDE_DIRS)
+MARK_AS_ADVANCED(GNURADIO_LDPC_LIBRARIES GNURADIO_LDPC_INCLUDE_DIRS)
+
